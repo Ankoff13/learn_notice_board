@@ -23,18 +23,21 @@ reguest = requests.get(url)
 
 soup = BeautifulSoup(reguest.text, "html.parser")
 
-cars = soup.find("td", class_="msga2 pp0").parent()
-
-
-for car in cars:
+for car in soup.find("td", class_="msga2 pp0").parents:
     print(car)
 
+# cars = soup.find("td", class_="msga2 pp0").parent()
+
+
+# for car in cars:
+#     print(car)
 
 
 
 
 
 
+ 
 
 
 
