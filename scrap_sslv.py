@@ -1,7 +1,10 @@
+# установка eautifulSoup и lxml
+
 from cgitb import html
 from unittest import result
 import requests
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup 
+
 
 
 url = "https://www.ss.lv/ru/transport/cars/alfa-romeo/"
@@ -21,16 +24,17 @@ url = "https://www.ss.lv/ru/transport/cars/alfa-romeo/"
 
 reguest = requests.get(url)
 
-soup = BeautifulSoup(reguest.text, "html.parser")
+soup = BeautifulSoup(reguest.text, "lxml")
 
-for car in soup.find("td", class_="msga2 pp0").parents:
-    print(car)
-
-# cars = soup.find("td", class_="msga2 pp0").parent()
-
-
-# for car in cars:
+# for car in soup.find("td", class_="msga2 pp0").parents: # не подходит, очень много информации
 #     print(car)
+
+# cars = soup.find("td", class_="msga2 pp0").find_parent().parent() #текст сплошняком
+cars = soup.find("td", class_="msga2 pp0").parent.find_parent() #текст блоками
+
+for car in cars:
+    print(car)
+    
 
 
 
