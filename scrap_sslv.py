@@ -1,7 +1,7 @@
-# установка eautifulSoup и lxml
+# устанавливаем pip BeautifulSoup и lxml
 
-from cgitb import html
-from unittest import result
+from cgitb import html        # не помню зачем
+from unittest import result   # не помню зачем 
 import requests
 from bs4 import BeautifulSoup 
 
@@ -9,13 +9,13 @@ from bs4 import BeautifulSoup
 
 url = "https://www.ss.lv/ru/transport/cars/alfa-romeo/"
 
+# # headers заголовки создаются для того, что бы хоть немного показать сайту, что мы не бот, а обычный пользователь
 # headers = {
-#     "accept: */*",
-#     "user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36"
+#     "Accept": "*/*",
+#     "User-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:104.0) Gecko/20100101 Firefox/104.0"
 # }
-# result = requests.get(url)
-# src = result.text
-# # print(src)
+# reg = requests.get(url, headers=headers)
+# src = reg.text
 
 
 # with open("scrap_sslv.html", "w", encoding="utf8") as  f:
@@ -26,10 +26,6 @@ reguest = requests.get(url)
 
 soup = BeautifulSoup(reguest.text, "lxml")
 
-# for car in soup.find("td", class_="msga2 pp0").parents: # не подходит, очень много информации
-#     print(car)
-
-# cars = soup.find("td", class_="msga2 pp0").find_parent().parent() #текст сплошняком
 cars = soup.find("td", class_="msga2 pp0").parent.find_parent() #текст блоками
 
 for car in cars:
